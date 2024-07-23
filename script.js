@@ -128,7 +128,9 @@ class Slidy {
         case 'ArrowLeft':
           e.preventDefault();
           if (isMax) {
-            this.#updateMax(this.values[1] - this.options.step);
+            if (this.values[1] - this.options.step > this.values[0]) {
+              this.#updateMax(this.values[1] - this.options.step);
+            }
           } else {
             this.#updateMin(this.values[0] - this.options.step);
           }
@@ -139,7 +141,29 @@ class Slidy {
           if (isMax) {
             this.#updateMax(this.values[1] + this.options.step);
           } else {
-            this.#updateMin(this.values[0] + this.options.step);
+            if (this.values.length === 2) {
+              if (this.values[0] + this.options.step < this.values[1]) {
+                this.#updateMin(this.values[0] + this.options.step);
+              }
+            } else {
+              this.#updateMin(this.values[0] + this.options.step);
+            }
+          }
+          break;
+        case 'Home':
+          e.preventDefault();
+          if (isMax) {
+            this.#updateMax(this.values[0]);
+          } else {
+            this.#updateMin(this.options.min);
+          }
+          break;
+        case 'End':
+          e.preventDefault();
+          if (isMax) {
+            this.#updateMax(this.options.max);
+          } else {
+            this.#updateMin(this.values.length === 2 ? this.values[1] : this.options.max);
           }
           break;
       }

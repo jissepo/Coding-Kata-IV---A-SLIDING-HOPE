@@ -87,7 +87,7 @@ main {
 }
 
 .slidy__segment {
-    border: 0.25rem solid white;
+    border: 0.5rem solid white;
     background-color: var(--jj-secondary-color);
     border-radius: 1px;
     height: var(--jj-slidy-segments-height);
