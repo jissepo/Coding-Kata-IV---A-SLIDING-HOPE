@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #fff;
+    font-size: 16px;
+    font-family: "Comic Neue", cursive;
+    padding: 2rem;
+}
+
+main {
+    --jj-primary-color: #E938A3;
+    --jj-secondary-color: #D9D9D9;
+    --jj-border-color: #FFFFFF;
+    --jj-slidy-button-size: 1.5rem;
+    --jj-slidy-track-size: 0.3125rem;
+    --jj-sildy-button-left: 0%;
+    --jj-slidy-segments-height: 0.625rem;
+    --jj-slidy-segments-width: 0.125rem;
+    --jj-sildy-track-min-left: 0%;
+    --jj-sildy-track-max-left: 0%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.slidy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.slidy__input-container {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-around;
+}
+
+.slidy__track-container {
+    position: relative;
+    isolation: isolate;
+    height: var(--jj-slidy-button-size);
+}
+
+.slidy__button {
+    background-color: var(--jj-primary-color);
+    border: 2px solid var(--jj-border-color);
+    border-radius: 1rem;
+    height: var(--jj-slidy-button-size);
+    width: var(--jj-slidy-button-size);
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    z-index: 1;
+    left: calc(var(--jj-sildy-button-left) - var(--jj-slidy-button-size) / 2);
+}
+
+.slidy__track {
+    background-color: var(--jj-secondary-color);
+    border-radius: 0.5rem;
+    height: var(--jj-slidy-track-size);
+    width: 100%;
+    position: absolute;
+    top: calc(1.5rem / 2 - var(--jj-slidy-track-size));
+
+    &::before {
+        content: '';
+        position: absolute;
+        height: var(--jj-slidy-track-size);
+        background-color: var(--jj-primary-color);
+        border-radius: 1rem;
+        top: 0;
+        left: var(--jj-sildy-track-min-left);
+        right: calc( 100% - var(--jj-sildy-track-max-left)) ;
+    }
+}
+
+.slidy__segment-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.slidy__segment {
+    border: 0.25rem solid white;
+    background-color: var(--jj-secondary-color);
+    border-radius: 1px;
+    height: var(--jj-slidy-segments-height);
+    width: var(--jj-slidy-segments-width);
+    cursor: pointer;
+    box-sizing: content-box;
+
+    &:first-of-type {
+        border-left: none;
+    }
+
+    &:last-of-type {
+        border-right: none;
+    }
+}
